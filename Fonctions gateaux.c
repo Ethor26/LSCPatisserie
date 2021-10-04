@@ -1,5 +1,6 @@
 #include "Fonctions gateaux.h"
 
+
 Element_str* initialiser_gouts(){
 
 }
