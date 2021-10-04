@@ -78,29 +78,29 @@ CMakeFiles/LSCPatisserie.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/LSCPatisserie.dir/main.c.s"
 	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\luisi\CLionProjects\LSCPatisserie\main.c -o CMakeFiles\LSCPatisserie.dir\main.c.s
 
-CMakeFiles/LSCPatisserie.dir/fonctions.c.obj: CMakeFiles/LSCPatisserie.dir/flags.make
-CMakeFiles/LSCPatisserie.dir/fonctions.c.obj: ../fonctions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/LSCPatisserie.dir/fonctions.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\LSCPatisserie.dir\fonctions.c.obj -c C:\Users\luisi\CLionProjects\LSCPatisserie\fonctions.c
+CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj: CMakeFiles/LSCPatisserie.dir/flags.make
+CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj: ../Fonctions\ gateaux.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\LSCPatisserie.dir\Fonctions_gateaux.c.obj -c "C:\Users\luisi\CLionProjects\LSCPatisserie\Fonctions gateaux.c"
 
-CMakeFiles/LSCPatisserie.dir/fonctions.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/LSCPatisserie.dir/fonctions.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\luisi\CLionProjects\LSCPatisserie\fonctions.c > CMakeFiles\LSCPatisserie.dir\fonctions.c.i
+CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.i"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\luisi\CLionProjects\LSCPatisserie\Fonctions gateaux.c" > CMakeFiles\LSCPatisserie.dir\Fonctions_gateaux.c.i
 
-CMakeFiles/LSCPatisserie.dir/fonctions.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/LSCPatisserie.dir/fonctions.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\luisi\CLionProjects\LSCPatisserie\fonctions.c -o CMakeFiles\LSCPatisserie.dir\fonctions.c.s
+CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.s"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\luisi\CLionProjects\LSCPatisserie\Fonctions gateaux.c" -o CMakeFiles\LSCPatisserie.dir\Fonctions_gateaux.c.s
 
 # Object files for target LSCPatisserie
 LSCPatisserie_OBJECTS = \
 "CMakeFiles/LSCPatisserie.dir/main.c.obj" \
-"CMakeFiles/LSCPatisserie.dir/fonctions.c.obj"
+"CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj"
 
 # External object files for target LSCPatisserie
 LSCPatisserie_EXTERNAL_OBJECTS =
 
 LSCPatisserie.exe: CMakeFiles/LSCPatisserie.dir/main.c.obj
-LSCPatisserie.exe: CMakeFiles/LSCPatisserie.dir/fonctions.c.obj
+LSCPatisserie.exe: CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj
 LSCPatisserie.exe: CMakeFiles/LSCPatisserie.dir/build.make
 LSCPatisserie.exe: CMakeFiles/LSCPatisserie.dir/linklibs.rsp
 LSCPatisserie.exe: CMakeFiles/LSCPatisserie.dir/objects1.rsp

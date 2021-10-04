@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/LSCPatisserie.dir/fonctions.c.obj"
+  "CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj"
   "CMakeFiles/LSCPatisserie.dir/main.c.obj"
   "LSCPatisserie.exe"
   "LSCPatisserie.exe.manifest"
