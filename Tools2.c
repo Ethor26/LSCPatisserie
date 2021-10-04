@@ -65,7 +65,7 @@ void LireInt(int * valeur)
 
 // --------------------------------------------------------------
 // Fonction créeant un élément (objet) d'une LSC contenant un entier et la référence vers le suivant.
-Element * creer_element_Int(int val){
+Element * creer_element_Int(int val){ // Commentaire inutile
     Element * nouv_el;
     nouv_el = (Element *)malloc(sizeof(Element));
     nouv_el->dataInt = val;
