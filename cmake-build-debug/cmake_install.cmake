@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/maxim/CLionProjects/LSCPatisserie
+# Install script for directory: C:/Users/luisi/CLionProjects/LSCPatisserie
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/maxim/CLionProjects/LSCPatisserie/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/luisi/CLionProjects/LSCPatisserie/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
