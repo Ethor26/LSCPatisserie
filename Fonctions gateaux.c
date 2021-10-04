@@ -1,7 +1,7 @@
 #include "Fonctions gateaux.h"
 #include "stdlib.h"
 
-Element_str* initialiser_gouts(){ // Commentaire inutile
+Element_str* initialiser_gouts(){
 
 }
 
@@ -43,9 +43,14 @@ void construire_gateau(Gateau* gateau, Element_str* l_gouts){
 }
 
 void livrer(Gateau* gateau, File_Degustation* f_degustation){
-
+    Element_gtx * ElGat = malloc(sizeof(Element_gtx));
+    ElGat->Gateau = gateau;
+    ElGat->next = f_degustation->Gateaux;
+    f_degustation->Gateaux = ElGat;
+    ElGat->Gateau->commande = NULL;
 }
 
 void degustation(File_Degustation* f_degustation, int nb_parts){
-
+    
 }
+

@@ -8,47 +8,6 @@
 #endif //LSCPATISSERIE_FONCTIONS_GATEAUX_H
 
 # include "Tools2.h"
-// ****************************************
-// PARTIE 0 : STRUCTURES
-
-// ----------------------------------------
-// STRUCTURE 1: LSC de chaines de caractères.
-typedef struct Element_str{
-    char texte[50];
-    struct Element_str* next;
-}Element_str;
-
-// ----------------------------------------
-// STRUCTURE 2: Eléments constitutifs d'un gateau.
-typedef struct Gateau{
-    struct Element_str* commande;
-    struct Pile_Gouts* p_gouts;
-}Gateau;
-
-// ----------------------------------------
-// STRUCTURE 3: LSC de la structure gateau
-typedef struct Element_gtx{
-    struct Gateau* Gateau;
-    struct Element_gtx* next;
-}Element_gtx;
-
-// ----------------------------------------
-// STRUCTURE 4: File de STRUCTURE3 pour la commande
-typedef struct File_Commandes{
-struct Element_gtx* Gateaux;
-}File_Commandes;
-
-// ----------------------------------------
-// STRUCTURE 5: Pile de STRUCTURE1 pour le gateau.
-typedef struct Pile_Gouts{
-struct Element_str* Gouts;
-}Pile_Gouts;
-
-// ----------------------------------------
-// STRUCTURE 5: File de STRUCTURE3 pour la dégustation
-typedef struct File_Degustation{
-struct Element_gtx* Gateaux;
-}File_Degustation;
 
 // ****************************************
 // PARTIE 2 : Fonctions de conception et demande de gateau

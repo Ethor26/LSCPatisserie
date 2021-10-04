@@ -103,9 +103,9 @@ Element* create_list(int n){
 
 // --------------------------------------------------------------
 // Affichage LSC D'entiers : version du cours.
-void display_list(Element* liste){
+void display_list(Element_str * liste){
     if (liste != NULL){
-        printf("%d-->", liste->dataInt);
+        printf("%s-->", liste->texte);
         display_list(liste->next);
     }
     else{
