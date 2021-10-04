@@ -141,6 +141,33 @@ LSCPatisserie/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/build
 .PHONY : LSCPatisserie/fast
 
+Fonctions_gateaux.obj: Fonctions_gateaux.c.obj
+
+.PHONY : Fonctions_gateaux.obj
+
+# target to build an object file
+Fonctions_gateaux.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj
+.PHONY : Fonctions_gateaux.c.obj
+
+Fonctions_gateaux.i: Fonctions_gateaux.c.i
+
+.PHONY : Fonctions_gateaux.i
+
+# target to preprocess a source file
+Fonctions_gateaux.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.i
+.PHONY : Fonctions_gateaux.c.i
+
+Fonctions_gateaux.s: Fonctions_gateaux.c.s
+
+.PHONY : Fonctions_gateaux.s
+
+# target to generate assembly for a file
+Fonctions_gateaux.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.s
+.PHONY : Fonctions_gateaux.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -177,6 +204,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... LSCPatisserie
+	@echo ... Fonctions_gateaux.obj
+	@echo ... Fonctions_gateaux.i
+	@echo ... Fonctions_gateaux.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

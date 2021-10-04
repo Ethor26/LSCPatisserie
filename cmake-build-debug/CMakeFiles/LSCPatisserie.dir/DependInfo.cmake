@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "C:/Users/maxim/CLionProjects/LSCPatisserie/Fonctions gateaux.c" "C:/Users/maxim/CLionProjects/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj"
   "C:/Users/maxim/CLionProjects/LSCPatisserie/main.c" "C:/Users/maxim/CLionProjects/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

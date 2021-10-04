@@ -74,6 +74,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/maxim/CLionProjects/LSCPatisserie/Fonctions gateaux.c">
+			<Option target="LSCPatisserie"/>
+		</Unit>
+		<Unit filename="C:/Users/maxim/CLionProjects/LSCPatisserie/Fonctions gateaux.h">
+			<Option target="LSCPatisserie"/>
+		</Unit>
 		<Unit filename="C:/Users/maxim/CLionProjects/LSCPatisserie/main.c">
 			<Option target="LSCPatisserie"/>
 		</Unit>
