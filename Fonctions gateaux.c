@@ -1,7 +1,7 @@
 #include "Fonctions gateaux.h"
 #include "stdlib.h"
 
-Element_str* initialiser_gouts(){
+Element_str* initialiser_gouts(){ // Commentaire inutile
 
 }
 
