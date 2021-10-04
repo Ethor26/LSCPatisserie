@@ -50,7 +50,34 @@ void livrer(Gateau* gateau, File_Degustation* f_degustation){
     ElGat->Gateau->commande = NULL;
 }
 
+int degust1Gateau(Element_gtx * ElGateau, int nb_parts){
+    Element_gtx* temp = ElGateau;
+    int cpt = 0;
+    while(cpt<nb_parts){
+        if(temp != NULL){
+            temp = temp->next;
+            cpt++;
+        }
+        else{
+            return 0;
+        }
+    }
+    return(1-nb_parts); // Remplacer 1 par taille de LSC
+}
+
 void degustation(File_Degustation* f_degustation, int nb_parts){
-    
+    File_Degustation* temp = f_degustation;
+    int NbGat = 0;
+    while(temp->Gateaux != NULL){
+        int NbPartRest = degust1Gateau(temp->Gateaux, nb_parts);
+        if(NbPartRest == 0){
+            NbGat++;
+            printf("Gateau %d mange", NbGat);
+            temp->Gateaux = temp->Gateaux->next;
+        }
+        else{
+            printf("Apres dégustation de %d parts, il reste %d part à manger du Gateau %d",nb_parts, NbPartRest, NbGat);
+        }
+    }
 }
 
