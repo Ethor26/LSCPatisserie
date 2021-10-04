@@ -1,0 +1,3 @@
+"D:\Prog Clion\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\LSCPatisserie.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\LSCPatisserie.dir/objects.a @CMakeFiles\LSCPatisserie.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\LSCPatisserie.dir/objects.a -Wl,--no-whole-archive -o LSCPatisserie.exe -Wl,--out-implib,libLSCPatisserie.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\LSCPatisserie.dir\linklibs.rsp
