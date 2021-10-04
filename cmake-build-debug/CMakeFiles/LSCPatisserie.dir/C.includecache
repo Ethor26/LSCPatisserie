@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/luisi/CLionProjects/LSCPatisserie/fonctions.c
+fonctions.h
+C:/Users/luisi/CLionProjects/LSCPatisserie/fonctions.h
+
+C:/Users/luisi/CLionProjects/LSCPatisserie/fonctions.h
+
+C:/Users/luisi/CLionProjects/LSCPatisserie/main.c
+stdio.h
+-
+fonctions.h
+C:/Users/luisi/CLionProjects/LSCPatisserie/fonctions.h
+
