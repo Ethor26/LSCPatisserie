@@ -152,29 +152,29 @@ Fonctions_gateaux.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.s
 .PHONY : Fonctions_gateaux.c.s
 
-Tools2.obj: Tools2.c.obj
-.PHONY : Tools2.obj
+Tools.obj: Tools.c.obj
+.PHONY : Tools.obj
 
 # target to build an object file
-Tools2.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools2.c.obj
-.PHONY : Tools2.c.obj
+Tools.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools.c.obj
+.PHONY : Tools.c.obj
 
-Tools2.i: Tools2.c.i
-.PHONY : Tools2.i
+Tools.i: Tools.c.i
+.PHONY : Tools.i
 
 # target to preprocess a source file
-Tools2.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools2.c.i
-.PHONY : Tools2.c.i
+Tools.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools.c.i
+.PHONY : Tools.c.i
 
-Tools2.s: Tools2.c.s
-.PHONY : Tools2.s
+Tools.s: Tools.c.s
+.PHONY : Tools.s
 
 # target to generate assembly for a file
-Tools2.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools2.c.s
-.PHONY : Tools2.c.s
+Tools.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools.c.s
+.PHONY : Tools.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -212,9 +212,9 @@ help:
 	@echo ... Fonctions_gateaux.obj
 	@echo ... Fonctions_gateaux.i
 	@echo ... Fonctions_gateaux.s
-	@echo ... Tools2.obj
-	@echo ... Tools2.i
-	@echo ... Tools2.s
+	@echo ... Tools.obj
+	@echo ... Tools.i
+	@echo ... Tools.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

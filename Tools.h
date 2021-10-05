@@ -75,8 +75,17 @@ typedef struct element{
     struct element* next;
 }Element;
 
-Element * creer_element_Int(int val);
-Element * CreationLSC_Int();
-Element* create_list(int n);
 void display_list(Element_str* liste);
-void free_list(Element* liste);
+void free_list(File_Degustation* liste);
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : dépile la pile des gouts d'un gateau
+char * depiler_gouts(Pile_Gouts * p);
+
+//---------------------------------------------------------------
+// FONCTION OUTIL: Vérifie si la liste de dégustation est vide.
+int f_est_vide(File_Degustation* f);
+
+//---------------------------------------------------------------
+// FONCTION OUTIL: Supprime un élément de la file de dégustation.
+Gateau defiler(File_Degustation* f);

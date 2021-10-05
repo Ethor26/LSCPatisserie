@@ -7,7 +7,7 @@
 
 #endif //LSCPATISSERIE_FONCTIONS_GATEAUX_H
 
-# include "Tools2.h"
+# include "Tools.h"
 
 // ****************************************
 // PARTIE 2 : Fonctions de conception et demande de gateau

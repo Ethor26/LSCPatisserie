@@ -6,7 +6,7 @@ int main() {
         int RefFich;
 
 /*Algorithme */
-        printf("Entrez la référence de l'exo de TD ou 0 pour un exo de cour ou -1 pour renommer un fichier: ");
+        printf("Entrez la référence de l'algorithme à tester");
         LireInt(&RefFich);
         switch(RefFich){
         // I. Algos principal

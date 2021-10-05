@@ -1,0 +1,449 @@
+// 2e Fichier main du cour LSC
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int allocs;
+
+typedef struct Element{
+    int data;
+    struct Element* next;
+}Element;
+
+Element* create_el(int val){
+    Element* nouv_el;
+	nouv_el = (Element*)malloc(sizeof(Element));
+    allocs++;
+	nouv_el->data = val;
+	nouv_el->next = NULL;
+	return nouv_el;
+}
+
+void afficher_liste_rec(Element* liste){
+    if (liste != NULL){
+        printf("%d-->", liste->data);
+		afficher_liste_rec(liste->next);
+    }
+    else{
+        printf("X\n");
+    }
+}
+
+Element* create_list(int n){
+    if ( n <= 0){
+        return NULL;
+    }
+    else{
+        Element* first = create_el(1);
+        Element* temp = first;
+        int cpt = 1;
+        while (cpt < n){
+            temp->next = create_el(cpt + 1);
+            cpt++;
+            temp = temp->next;
+        }
+        return first;
+    }
+}
+
+Element* create_list_rec(int n){
+    if (n <= 0){
+        return NULL;
+    }
+    else{
+        Element* moimoimoi = create_el(n);
+        moimoimoi->next = create_list_rec(n-1);
+        return moimoimoi;
+    }
+}
+
+int taille_LSC_rec(Element* liste)
+{
+	if( liste == NULL){
+        return 0;
+    }
+	else{
+        return 1 + taille_LSC_rec(liste->next);
+    }
+}
+
+void ajout_val_fin(Element** liste, int val)
+{
+    Element* temp;
+    Element* nouv_el;
+    nouv_el = create_el(val);
+    if (*liste == NULL ){
+        *liste = nouv_el;
+    }
+    else{
+        temp = *liste;
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+        temp->next = nouv_el;
+    }
+}
+
+
+void ajout_val_fin_rec(Element** liste, int val){
+    if (*liste == NULL){
+        *liste = create_el(val);
+    }
+    else{
+        ajout_val_fin_rec( &((*liste)->next) , val);
+    }
+}
+
+void ajout_val_debut(Element** liste, int val){
+    Element* nouv_el = create_el(val);
+    nouv_el->next = *liste;
+    *liste = nouv_el;
+}
+
+int position_val(Element* liste, int val)
+{
+    Element* temp = liste;
+    int pos = -1;
+    int cpt = 1;
+    while(temp != NULL && pos == -1){
+        if (temp->data == val){
+            pos = cpt;
+        }
+        else{
+            temp = temp->next;
+            cpt++;
+        }
+    }
+    return pos;
+}
+
+int position_val_rec(Element* liste, int val){
+    if(liste == NULL){
+        return -1;
+    }
+    else if(liste->data == val){
+        return 1;
+    }
+    else{
+        int res = position_val_rec(liste->next, val);
+        if (res == -1){
+            return -1;
+        }
+        else{
+            return 1 + res;
+        }
+    }
+}
+
+void delete_val(Element** liste, int val){
+    while(*liste != NULL && (*liste)->data == val){ // On supprime le 1ere élément, plusieurs fois avec while si sa
+        // valeur est identique pour les suivants (d'affilée).
+        Element* old = (*liste);
+        (*liste) = (*liste)->next;
+        free(old);
+        allocs--;
+    }
+    if (*liste != NULL){
+        Element* temp = *liste;
+        while(temp->next != NULL){
+            if(temp->next->data == val){
+                Element* old = temp->next;
+                temp->next = temp->next->next;
+                free(old);
+                allocs--;
+            }
+            else{
+                temp = temp->next;
+            }
+        }
+    }
+}
+
+
+void delete_val_rec(Element** liste, int val){
+    if (*liste != NULL){
+        if((*liste)->data == val){
+            Element* old = (*liste);
+            (*liste) = (*liste)->next;
+            free(old);
+            allocs--;
+            delete_val_rec(liste, val);
+        }
+        else{
+            delete_val_rec(&((*liste)->next), val);
+        }
+    }
+}
+
+
+void free_list(Element* liste){
+    if (liste != NULL){
+        free_list(liste->next);
+        free(liste);
+        allocs--;
+    }
+}
+
+
+int main(){
+    allocs = 0;
+    Element* ma_liste = NULL;
+
+    ajout_val_fin(&ma_liste, 1);
+    ajout_val_fin(&ma_liste, 2);
+    ajout_val_fin_rec(&ma_liste, 3);
+    ajout_val_fin_rec(&ma_liste, 4);
+    ajout_val_fin(&ma_liste, 5);
+
+    printf("pos : %d\n", position_val_rec(NULL, 2));
+
+    afficher_liste_rec(ma_liste);
+    //delete_val_rec(&ma_liste, 1);
+    afficher_liste_rec(ma_liste);
+
+
+    //free
+    free_list(ma_liste);
+    printf("MEM LEAKS : %d\n", allocs);
+
+    return 0;
+}
+
+
+// Fichier du cour Pile-file (main 2)
+
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int allocs;
+//pas besoin, c'est pour le visuel
+
+typedef struct Element{
+    char data;
+    struct Element* next;
+}Element;
+
+//PILE////////
+//************
+//////////////
+typedef struct Pile{
+    Element* data;
+}Pile;
+
+Pile* creer_pile(){
+    Pile* nouv_pile = (Pile*)malloc(sizeof(Pile));
+    allocs++;
+    nouv_pile->data = NULL;
+    return nouv_pile;
+}
+
+int p_est_vide(Pile* p){
+    if(p->data == NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+void empiler(Pile* p, char val){
+    Element* nouv_el = (Element*)malloc(sizeof(Element));
+    allocs++;
+    nouv_el->data = val;
+    nouv_el->next = p->data;
+    p->data = nouv_el;
+}
+
+char depiler(Pile* p){
+    if(p_est_vide(p) == 1){
+        //GARGL
+        return '\0';
+    }
+    else{
+        char res = p->data->data;
+        Element* old = p->data;
+        p->data = p->data->next;
+        free(old);
+        allocs--;
+        return res;
+    }
+}
+
+void free_pile(Pile* p){
+    while(p_est_vide(p) != 1){
+        Element* old = p->data;
+        p->data = p->data->next;
+        free(old);
+        allocs--;
+    }
+    free(p);
+    allocs--;
+}
+
+//FILE////////
+//************
+//////////////
+
+typedef struct File{
+    Element* data;
+}File;
+
+File* creer_file(){
+    File* nouv_file = (File*)malloc(sizeof(File));
+    nouv_file->data = NULL;
+    return nouv_file;
+}
+
+int f_est_vide(File* f){
+    if (f->data == NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+void enfiler(File* f, char val){
+    // J'ajoute à la fin
+    Element* nouv_el = (Element*)malloc(sizeof(Element));
+    nouv_el->data = val;
+    nouv_el->next = NULL;
+    if (f->data == NULL){
+        f->data = nouv_el;
+    }
+    else{
+        Element* temp = f->data;
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+        temp->next = nouv_el;
+    }
+}
+
+char defiler(File* f){
+    //DONC je retire au début
+    if(f_est_vide(f) == 1){
+        //GARGL
+        return '\0';
+    }
+    else{
+        char res = f->data->data;
+        Element* old = f->data;
+        f->data = f->data->next;
+        free(old);
+        return res;
+    }
+}
+
+void free_file(File* f){
+    while(f_est_vide(f) != 1){
+        defiler(f);
+    }
+    free(f);
+}
+
+int main(){
+
+//PILE////////
+//************
+//////////////
+    int test = 0;
+    Pile* p;
+    p = creer_pile();
+    if( p_est_vide(p) != 1){
+        printf("TEST est_vide sur pile vide HS\n");
+        test++;
+    }
+    empiler(p, '3');
+    if( p_est_vide(p) != 0){
+        printf("TEST est_vide sur pile non vide HS\n");
+        test++;
+    }
+    empiler(p, '4');
+    empiler(p, '9');
+    char res = depiler(p);
+    if (res != '9'){
+        printf("TEST depiler HS, expected : 9, got %c\n", res);
+        test++;
+    }
+    res = depiler(p);
+    if (res != '4'){
+        printf("TEST depiler HS, expected : 4, got %c\n", res);
+        test++;
+    }
+    depiler(p);
+    if( p_est_vide(p) != 1){
+        printf("TEST est_vide sur pile vide HS\n");
+        test++;
+    }
+    if (depiler(p) != '\0'){
+        printf("TEST depiler sur pile vide HS\n");
+        test++;
+    }
+
+    if (test == 0){
+        printf("TEST PILE OK !!\n");
+    }
+    else{
+        printf("ECHEC DES TESTS PILE !! avec %d echecs\n", test);
+    }
+
+    //MEMOIRE
+
+    free_pile(p);
+    printf("MEMTEST : %d\n", allocs);
+
+//FILE////////
+//************
+//////////////
+//Pas de var allocs
+
+    test = 0;
+    File* f;
+    f = creer_file();
+    if( f_est_vide(f) != 1){
+        printf("TEST est_vide sur file vide HS\n");
+        test++;
+    }
+    enfiler(f, '3');
+    if( f_est_vide(f) != 0){
+        printf("TEST est_vide sur file non vide HS\n");
+        test++;
+    }
+    enfiler(f, '4');
+    enfiler(f, '9');
+    res = defiler(f);
+    if (res != '3'){
+        printf("TEST defiler HS, expected : 3, got %c\n", res);
+        test++;
+    }
+    res = defiler(f);
+    if (res != '4'){
+        printf("TEST defiler HS, expected : 4, got %c\n", res);
+        test++;
+    }
+    defiler(f);
+    if( f_est_vide(f) != 1){
+        printf("TEST est_vide sur file vide HS\n");
+        test++;
+    }
+    if (defiler(f) != '\0'){
+        printf("TEST defiler sur file vide HS\n");
+        test++;
+    }
+
+    if (test == 0){
+        printf("TEST FILE OK !!\n");
+    }
+    else{
+        printf("ECHEC DES TESTS FILE !! avec %d echecs\n", test);
+    }
+
+    //MEMOIRE
+
+    free_file(f);
+
+    return 0;
+}
+

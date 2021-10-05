@@ -51,10 +51,11 @@ void livrer(Gateau* gateau, File_Degustation* f_degustation){
 }
 
 int degust1Gateau(Element_gtx * ElGateau, int nb_parts){
-    Element_gtx* temp = ElGateau;
+    Element_gtx * temp = ElGateau;
     int cpt = 0;
     while(cpt<nb_parts){
         if(temp != NULL){
+            depiler_gouts(ElGateau->Gateau->p_gouts);
             temp = temp->next;
             cpt++;
         }
@@ -69,14 +70,15 @@ void degustation(File_Degustation* f_degustation, int nb_parts){
     File_Degustation* temp = f_degustation;
     int NbGat = 0;
     while(temp->Gateaux != NULL){
-        int NbPartRest = degust1Gateau(temp->Gateaux, nb_parts);
+        int NbPartRest = degust1Gateau(f_degustation->Gateaux, nb_parts);
         if(NbPartRest == 0){
             NbGat++;
-            printf("Gateau %d mange", NbGat);
+            defiler(f_degustation);
+            printf("Gateau %d mange\n", NbGat);
             temp->Gateaux = temp->Gateaux->next;
         }
         else{
-            printf("Apres dégustation de %d parts, il reste %d part à manger du Gateau %d",nb_parts, NbPartRest, NbGat);
+            printf("Apres dégustation de %d parts, il reste %d part à manger du Gateau %d\n",nb_parts, NbPartRest, NbGat);
         }
     }
 }
