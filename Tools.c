@@ -105,8 +105,23 @@ char * depiler_gouts(Pile_Gouts * p){
 
 // - - - - - Pour Structure de File_commande
 
+//---------------------------------------------------------------
+// FONCTION OUTIL: Initialise la file de commandes.
+File_Commandes * creer_file_Cmd(){
+    File_Commandes * nouv_file = (File_Commandes*)malloc(sizeof(File_Commandes));
+    nouv_file->Gateaux = NULL;
+    return nouv_file;
+}
 
 // - - - - - Pour Structure de File_Degustation
+
+//---------------------------------------------------------------
+// FONCTION OUTIL: Initialise la file de dégustations.
+File_Degustation * creer_file_deg(){
+    File_Degustation * nouv_file = (File_Degustation*)malloc(sizeof(File_Degustation));
+    nouv_file->Gateaux = NULL;
+    return nouv_file;
+}
 
 //---------------------------------------------------------------
 // FONCTION OUTIL: Retourne la taille de la pile de gouts d'un gateau.

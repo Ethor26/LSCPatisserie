@@ -4,8 +4,12 @@
 int main() {
 // Déclaration variables //
         int RefFich;
-        int EcritCmd = 0, ReceptCmd = 0; // Variable (booléens) vérifiant respectivement dans le main si la commande a
+        int EcritCmd = 0; // Variable (booléens) vérifiant respectivement dans le main si la commande a
         // été écrite et recue.
+        Element_str* l_gouts = initialiser_gouts();
+        File_Commandes * f_commandes = creer_file_Cmd();
+        File_Degustation * f_degustation = creer_file_deg();
+
 /*Algorithme */
         printf("Entrez la reference de l'algorithme a tester: \n");
         LireInt(&RefFich);
@@ -16,7 +20,7 @@ int main() {
                 ; // Creation d'un rubik's Cube: a voir si dans ce case ou hors de la fonction.
                 int ChoixUser;
                 do {
-                    ChoixUser = Interface_User(&EcritCmd, &ReceptCmd);
+                    ChoixUser = Interface_User(&EcritCmd, l_gouts, f_commandes, f_degustation);
                 }while(ChoixUser != 5);
 
                 break; }

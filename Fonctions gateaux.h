@@ -45,4 +45,8 @@ void degustation(File_Degustation* f_degustation);
 
 // **************************************************************
 // FONTIONS INTERFACE UTILISATEUR qui propose un menu d'action à l'utilisateur.
-int Interface_User(int *EcritCmd, int*ReceptCmd);
+int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_commandes, File_Degustation * f_degustations);
+
+// ------------------------------------------------------------
+// FONCTION gérant le choix aléatoire du cas 6
+void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_commandes, File_Degustation * f_degustations);

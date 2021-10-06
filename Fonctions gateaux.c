@@ -94,12 +94,13 @@ void degustation(File_Degustation* f_degustation){
 
 // **************************************************************
 // FONTIONS INTERFACE UTILISATEUR qui propose un menu d'action à l'utilisateur.
-int Interface_User(int *EcritCmd, int*ReceptCmd){
+
+int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_commandes, File_Degustation * f_degustations){
     int ChoixUser;
     do {
         printf("Quel est votre choix pour la gestion patissière ? Entrez: \n"
                "1: Ecrire la commande \t 2: Recevoir la commande \t 3: Deguster un gateau \n"
-               "4: Deguster tous les gateaux \t 5: Sortir\n"); // Proposition du choix
+               "4: Deguster tous les gateaux \t 5: Sortir \t 6: Commande aléatoire\n"); // Proposition du choix
         LireInt(&ChoixUser); // Entrée du choix de l'utilisateur
     }while((int)ChoixUser < 1 || (int)ChoixUser > 6);
     switch(ChoixUser){
@@ -113,7 +114,6 @@ int Interface_User(int *EcritCmd, int*ReceptCmd){
             if(*EcritCmd) {
                 printf("Reception de commande.\n"); // Affiche le choix proposé
                 // FONCTION livraison
-                *ReceptCmd = 1;
                 printf("Commande recue.");
             }
             else
@@ -121,33 +121,90 @@ int Interface_User(int *EcritCmd, int*ReceptCmd){
             return ChoixUser;
         }
         case 3 : {
-            if(*ReceptCmd) {
-                printf("Degustation d'un gateau.\n"); // Affiche le choix proposé
-                // int nb_Part = 1 + rand()%8;
-                //FONCTION degust1Gateau(...);
+            printf("Degustation d'un gateau.\n"); // Affiche le choix proposé
+            if(f_degustations->Gateaux != NULL) {
+                int NbPartRest = degust1Gateau(f_degustations->Gateaux->Gateau);
+                printf("Il reste %d parts à manger du Gateau.\n", NbPartRest);
             }
             else
-                printf("Recevez une commmande avant.\n");
+                printf("Pas de gateaux dans la liste de degustation\n");
             return ChoixUser;
         }
         case 4 : {
-            // char Face[10], Couleur; int NumLigne, NumColonne;
-            if(*ReceptCmd) {
-                printf("Degustation de tous les gateaux.\n");
-                // FONCTION degustation(...)
+            printf("Degustation de tous les gateaux.\n"); // Affiche le choix proposé
+            if(f_degustations->Gateaux != NULL){
+                degustation(f_degustations); //+ verif si non vide
                 printf("Tous les gateaux ont été dégustés.\n");
             }
             else
-                printf("Recevez une commmande avant.\n");
+                printf("Pas de gateaux dans la liste de degustation\n");
             return ChoixUser;
         }
         case 5 : {
             printf("Fin du programme.\n"); // Affiche le choix proposé
             return ChoixUser;
         }
+
+        case 6 : {
+            int NbChang;
+            printf("Commande Aléatoire : entrez le nombre de changements.\n"); // Affiche le choix proposé
+            LireInt(&NbChang);
+            for(int i = 0; i<NbChang; i++)
+                Aleat_Choix(EcritCmd, l_gouts, f_commandes, f_degustations);
+            return ChoixUser;
+        }
+
         default:{
             return ChoixUser;
         }
     }
 }
 
+// ------------------------------------------------------------
+// FONCTION gérant le choix aléatoire du cas 6
+void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_commandes, File_Degustation * f_degustations){
+    int ChoixUser = 1 + rand() % 4;
+    switch(ChoixUser){
+        case 1 : {
+            printf("Ecriture de la commande.\n"); // Affiche le choix proposé
+            // Fonction passer_commande
+            *EcritCmd = 1; // Validation de l'initialisation
+            break;
+        }
+        case 2 : {
+            printf("Reception de commande en cours.\n");// Affiche le choix proposé
+            if(*EcritCmd) {
+                // FONCTION livraison
+                printf("Commande recue.");
+            }
+            else
+                printf("Ecrivez une commande avant.\n");
+        }
+            break;
+        case 3 : {
+            printf("Degustation d'un gateau.\n"); // Affiche le choix proposé
+            if(f_degustations->Gateaux != NULL) {
+                int NbPartRest = degust1Gateau(f_degustations->Gateaux->Gateau);
+                printf("Il reste %d parts à manger du Gateau.\n", NbPartRest);
+            }
+            else
+                printf("Pas de gateaux dans la liste de degustation\n");
+        }
+            break;
+        case 4 : {
+            printf("Degustation de tous les gateaux.\n"); // Affiche le choix proposé
+            if(f_degustations->Gateaux != NULL){
+                degustation(f_degustations); //+ verif si non vide
+                printf("Tous les gateaux ont été dégustés.\n");
+            }
+            else
+                printf("Pas de gateaux dans la liste de degustation\n");
+        }
+            break;
+
+        default:{
+            printf("Instruction non comprise.\n");
+            break;
+        }
+    }
+}

@@ -93,7 +93,15 @@ char * depiler_gouts(Pile_Gouts * p);
 
 // - - - - - Pour Structure de File_commande
 
+//---------------------------------------------------------------
+// FONCTION OUTIL: Initialise la file de commandes.
+File_Commandes * creer_file_Cmd();
+
 // - - - - - Pour Structure de File_Degustation
+
+//---------------------------------------------------------------
+// FONCTION OUTIL: Initialise la file de dégustation.
+File_Degustation * creer_file_deg();
 
 //---------------------------------------------------------------
 // FONCTION OUTIL: Vérifie si la liste de dégustation est vide.
