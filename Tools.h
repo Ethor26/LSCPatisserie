@@ -69,23 +69,36 @@ typedef struct File_Degustation{
 }File_Degustation;
 
 // ***************************************************************
-// FONCTIONS OUTILS pour la création de structure quelquonques d'entiers et de caractères.
-typedef struct element{
-    int dataInt;
-    struct element* next;
-}Element;
+// FONCTIONS OUTILS pour la création et manipulation de LSC.
 
-void display_list(Element_str* liste);
-void free_list(File_Degustation* liste);
+// - - - - - Pour Structure de Element str
+
+// --------------------------------------------------------------
+// Affichage LSC de chaine de caractères.
+void display_list(Element_str * liste);
+
+// - - - - - Pour Structure de Pile Gout
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : vérifie si la pile des gouts est vide
+int p_est_vide(Pile_Gouts* p);
 
 // --------------------------------------------------------------
 // FONCTION OUTIL : dépile la pile des gouts d'un gateau
 char * depiler_gouts(Pile_Gouts * p);
 
+// - - - - - Pour Structure de File_commande
+
+// - - - - - Pour Structure de File_Degustation
+
 //---------------------------------------------------------------
 // FONCTION OUTIL: Vérifie si la liste de dégustation est vide.
-int f_est_vide(File_Degustation* f);
+int fileDeg_est_vide(File_Degustation* f);
 
 //---------------------------------------------------------------
 // FONCTION OUTIL: Supprime un élément de la file de dégustation.
-Gateau defiler(File_Degustation* f);
+void defiler_FileDeg(File_Degustation* f);
+
+// --------------------------------------------------------------
+// FONCTION OUTIL: Libération de la file de dégustation.
+void free_list_Degust(File_Degustation* liste);

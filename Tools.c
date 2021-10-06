@@ -66,7 +66,7 @@ void LireInt(int * valeur)
 // - - - - - Pour Structure de Element str
 
 // --------------------------------------------------------------
-// Affichage LSC D'entiers : version du cours.
+// Affichage LSC de chaine de caractères.
 void display_list(Element_str * liste){
     if (liste != NULL){
         printf("%s-->", liste->texte);
@@ -79,8 +79,10 @@ void display_list(Element_str * liste){
 
 // - - - - - Pour Structure de Pile Gout
 
+// --------------------------------------------------------------
+// FONCTION OUTIL : vérifie si la pile des gouts est vide
 int p_est_vide(Pile_Gouts* p){
-        return (p->data == NULL);
+        return (p->Gouts == NULL);
 }
 
 // --------------------------------------------------------------
@@ -99,6 +101,11 @@ char * depiler_gouts(Pile_Gouts * p){
     }
 }
 
+
+
+// - - - - - Pour Structure de File_commande
+
+
 // - - - - - Pour Structure de File_Degustation
 
 int taille_LSC_fileDegustation(File_Degustation * liste)
@@ -111,46 +118,9 @@ int taille_LSC_fileDegustation(File_Degustation * liste)
     }
 }
 
-// --------------------------------------------------------------
-// Libération LSC
-void free_list(File_Degustation* liste){
-    if (liste != NULL){
-        free_list(liste->Gateaux->next);
-        free(liste);
-    }
-}
-
-// - - - - - Pour Structure de File_commande
-
-//---------------------------------------------------------------
-// FONCTION OUTIL : Supprime 1 valeur d'une LSC (pas dans
-
-void delete_1val(Element** liste, int val){
-    while(*liste != NULL && (*liste)->dataInt == val){ // On supprime le 1ere élément, plusieurs fois avec while si sa
-        // valeur est identique pour les suivants (d'affilée).
-        Element* old = (*liste);
-        (*liste) = (*liste)->next;
-        free(old);
-    }
-    if (*liste != NULL){
-        Element* temp = *liste;
-        while(temp->next != NULL){
-            if(temp->next->dataInt == val){
-                Element* old = temp->next;
-                temp->next = temp->next->next;
-                free(old);
-                break; // pour ne supprimer qu'une valeur
-            }
-            else{
-                temp = temp->next;
-            }
-        }
-    }
-}
-
 //---------------------------------------------------------------
 // FONCTION OUTIL: Vérifie si la liste de dégustation est vide.
-int f_est_vide(File_Degustation* f){
+int fileDeg_est_vide(File_Degustation* f){
     if (f->Gateaux == NULL){
         return 1;
     }
@@ -161,13 +131,20 @@ int f_est_vide(File_Degustation* f){
 
 //---------------------------------------------------------------
 // FONCTION OUTIL: Supprime un élément de la file de dégustation.
-Gateau defiler(File_Degustation* f){
+void defiler_FileDeg(File_Degustation* f){
     //DONC je retire au début
-    if(f_est_vide(f) != 1){
-        Gateau res = *f->Gateaux->Gateau;
+    if(fileDeg_est_vide(f) != 1){
         Gateau * old = f->Gateaux->Gateau;
         f->Gateaux = f->Gateaux->next;
         free(old);
-        return res;
     }
+}
+
+// --------------------------------------------------------------
+// Libération file de dégustation
+void free_list_Degust(File_Degustation* liste){
+    while(fileDeg_est_vide(liste) != 1){
+        defiler_FileDeg(liste);
+    }
+    free(liste);
 }

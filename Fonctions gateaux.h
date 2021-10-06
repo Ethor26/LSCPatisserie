@@ -42,3 +42,7 @@ void livrer(Gateau* gateau, File_Degustation* f_degustation);
 // ----------------------------------------
 // FONCTION : Ordonnation de la dégustation du client : gateau à déguster et nombre de part.
 void degustation(File_Degustation* f_degustation, int nb_parts);
+
+// **************************************************************
+// FONTIONS INTERFACE UTILISATEUR qui propose un menu d'action à l'utilisateur.
+int Interface_User(int *EcritCmd, int*ReceptCmd);
