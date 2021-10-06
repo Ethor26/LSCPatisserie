@@ -113,7 +113,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
         case 2 : {
             if(*EcritCmd) {
                 printf("Reception de commande.\n"); // Affiche le choix proposé
-                // FONCTION livraison
+                livrer(f_commandes->Gateaux->Gateau, f_degustations);
                 printf("Commande recue.");
             }
             else
@@ -174,7 +174,7 @@ void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comman
         case 2 : {
             printf("Reception de commande en cours.\n");// Affiche le choix proposé
             if(*EcritCmd) {
-                // FONCTION livraison
+                livrer(f_commandes->Gateaux->Gateau, f_degustations);
                 printf("Commande recue.");
             }
             else
