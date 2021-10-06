@@ -108,13 +108,15 @@ char * depiler_gouts(Pile_Gouts * p){
 
 // - - - - - Pour Structure de File_Degustation
 
-int taille_LSC_fileDegustation(File_Degustation * liste)
+//---------------------------------------------------------------
+// FONCTION OUTIL: Retourne la taille de la pile de gouts d'un gateau.
+int taille_LSC_Gateau(Element_str * liste)
 {
     if( liste == NULL){
         return 0;
     }
     else{
-        return 1; //+ taille_LSC_rec(liste->Gateaux->next);
+        return 1 + taille_LSC_Gateau(liste->next);
     }
 }
 

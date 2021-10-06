@@ -79,6 +79,10 @@ void display_list(Element_str * liste);
 
 // - - - - - Pour Structure de Pile Gout
 
+//---------------------------------------------------------------
+// FONCTION OUTIL: Retourne la taille de la pile de gouts d'un gateau.
+int taille_LSC_Gateau(Element_str * liste);
+
 // --------------------------------------------------------------
 // FONCTION OUTIL : vérifie si la pile des gouts est vide
 int p_est_vide(Pile_Gouts* p);
