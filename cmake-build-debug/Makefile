@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Prog Clion\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "D:\Program Files\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Prog Clion\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "D:\Program Files\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\luisi\CLionProjects\LSCPatisserie
+CMAKE_SOURCE_DIR = "D:\ethan\OneDrive - Efrei\L2-S1\L2S1-INFORMATIQUE GENERALE\ALGORITHMIE et structure de donnees 2\TD\CLionProjectsL2S1\LSCPatisserie"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug
+CMAKE_BINARY_DIR = "D:\ethan\OneDrive - Efrei\L2-S1\L2S1-INFORMATIQUE GENERALE\ALGORITHMIE et structure de donnees 2\TD\CLionProjectsL2S1\LSCPatisserie\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"D:\Prog Clion\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"D:\Program Files\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"D:\Prog Clion\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"D:\Program Files\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug\CMakeFiles C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "D:\ethan\OneDrive - Efrei\L2-S1\L2S1-INFORMATIQUE GENERALE\ALGORITHMIE et structure de donnees 2\TD\CLionProjectsL2S1\LSCPatisserie\cmake-build-debug\CMakeFiles" "D:\ethan\OneDrive - Efrei\L2-S1\L2S1-INFORMATIQUE GENERALE\ALGORITHMIE et structure de donnees 2\TD\CLionProjectsL2S1\LSCPatisserie\cmake-build-debug\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\luisi\CLionProjects\LSCPatisserie\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "D:\ethan\OneDrive - Efrei\L2-S1\L2S1-INFORMATIQUE GENERALE\ALGORITHMIE et structure de donnees 2\TD\CLionProjectsL2S1\LSCPatisserie\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -152,6 +152,30 @@ Fonctions_gateaux.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.s
 .PHONY : Fonctions_gateaux.c.s
 
+Tools.obj: Tools.c.obj
+.PHONY : Tools.obj
+
+# target to build an object file
+Tools.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools.c.obj
+.PHONY : Tools.c.obj
+
+Tools.i: Tools.c.i
+.PHONY : Tools.i
+
+# target to preprocess a source file
+Tools.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools.c.i
+.PHONY : Tools.c.i
+
+Tools.s: Tools.c.s
+.PHONY : Tools.s
+
+# target to generate assembly for a file
+Tools.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSCPatisserie.dir\build.make CMakeFiles/LSCPatisserie.dir/Tools.c.s
+.PHONY : Tools.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -188,6 +212,9 @@ help:
 	@echo ... Fonctions_gateaux.obj
 	@echo ... Fonctions_gateaux.i
 	@echo ... Fonctions_gateaux.s
+	@echo ... Tools.obj
+	@echo ... Tools.i
+	@echo ... Tools.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
