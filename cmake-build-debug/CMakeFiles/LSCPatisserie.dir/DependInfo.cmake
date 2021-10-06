@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Fonctions gateaux.c" "D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj"
-  "D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Tools.c" "D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/Tools.c.obj"
-  "D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/main.c" "D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/main.c.obj"
+  "C:/Users/luisi/CLionProjects/LSCPatisserie/Fonctions gateaux.c" "C:/Users/luisi/CLionProjects/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/Fonctions_gateaux.c.obj"
+  "C:/Users/luisi/CLionProjects/LSCPatisserie/Tools.c" "C:/Users/luisi/CLionProjects/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/Tools.c.obj"
+  "C:/Users/luisi/CLionProjects/LSCPatisserie/main.c" "C:/Users/luisi/CLionProjects/LSCPatisserie/cmake-build-debug/CMakeFiles/LSCPatisserie.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

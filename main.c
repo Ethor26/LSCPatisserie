@@ -7,7 +7,7 @@ int main() {
         int EcritCmd = 0, ReceptCmd = 0; // Variable (booléens) vérifiant respectivement dans le main si la commande a
         // été écrite et recue.
 /*Algorithme */
-        printf("Entrez la référence de l'algorithme à tester");
+        printf("Entrez la reference de l'algorithme a tester: \n");
         LireInt(&RefFich);
         switch(RefFich){
         // I. Algos principal
@@ -22,8 +22,9 @@ int main() {
                 break; }
 
         // II. Test de chacun
-            case 2: { printf("Debut de l'algorithme\n");
-                initialiser_gouts();
+            case 2: { printf("Debut de l'algorithme:\n");
+                Element_str* gout = initialiser_gouts();
+                display_list(gout);
                 break; }
 
         // III. Affichage par défaut (si erreurs).

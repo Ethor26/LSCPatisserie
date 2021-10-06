@@ -6,17 +6,11 @@
 
 #IncludeRegexTransform: 
 
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Fonctions gateaux.c
-Fonctions gateaux.h
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Fonctions gateaux.h
-stdlib.h
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/stdlib.h
-
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Fonctions gateaux.h
+C:/Users/luisi/CLionProjects/LSCPatisserie/Fonctions gateaux.h
 Tools.h
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Tools.h
+C:/Users/luisi/CLionProjects/LSCPatisserie/Tools.h
 
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Tools.h
+C:/Users/luisi/CLionProjects/LSCPatisserie/Tools.h
 stdio.h
 -
 string.h
@@ -24,7 +18,7 @@ string.h
 stdlib.h
 -
 
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/main.c
+C:/Users/luisi/CLionProjects/LSCPatisserie/main.c
 Fonctions gateaux.h
-D:/ethan/OneDrive - Efrei/L2-S1/L2S1-INFORMATIQUE GENERALE/ALGORITHMIE et structure de donnees 2/TD/CLionProjectsL2S1/LSCPatisserie/Fonctions gateaux.h
+C:/Users/luisi/CLionProjects/LSCPatisserie/Fonctions gateaux.h
 
