@@ -60,13 +60,49 @@ void LireInt(int * valeur)
     }while(*valeur == 0 && strcmp(nombreTexte, "0") != 0);
 }
 
+char * ConvCharChaine(char c){
+    return ((char[2]) { c, '\0' });
+}
+
 // ***************************************************************
 // FONCTIONS OUTILS pour la création et manipulation de LSC.
 
 // - - - - - Pour Structure de Element str
 
 // --------------------------------------------------------------
-// Affichage LSC de chaine de caractères.
+// FONCTION OUTIL qui créée une LSC d'Element_str
+Element_str* creer_list(char ch[50]){
+    Element_str* list_g;
+    list_g = (Element_str*) malloc(sizeof (Element_str));
+    for (int i =0; i<= 50; i++)
+        list_g -> texte[i] = ch[i];
+    list_g -> next = NULL;
+    return list_g;
+}
+
+// --------------------------------------------------------------
+// FONCTION OUTIL qui ajoute une valeur à la fin de la LSC d'Element_str
+void ajout_val_fin_rec(Element_str** ad_liste, char txt[50]){
+    if (*ad_liste == NULL) {
+        *ad_liste = creer_list(txt);
+    } else {
+        ajout_val_fin_rec(&((*ad_liste)->next), txt);
+    }
+}
+
+// --------------------------------------------------------------
+// FONCTION OUTIL qui mesure la taille de la LSC d'Element_str
+int nb_el(Element_str* list){
+    int cpt = 0;
+    while (list != NULL){
+        cpt++;
+        list = list -> next;
+    }
+    return cpt;
+}
+
+// --------------------------------------------------------------
+// FONCTION OUTIL Affichage LSC de chaine de caractères.
 void display_list(Element_str * liste){
     if (liste != NULL){
         printf("%s-->", liste->texte);
@@ -113,6 +149,17 @@ File_Commandes * creer_file_Cmd(){
     return nouv_file;
 }
 
+//---------------------------------------------------------------
+// FONCTION OUTIL: Verifie si la liste de commande est vide.
+int file_commande_vide(File_Commandes* f){
+    if(f->Gateaux == NULL){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
 // - - - - - Pour Structure de File_Degustation
 
 //---------------------------------------------------------------
@@ -149,11 +196,15 @@ int fileDeg_est_vide(File_Degustation* f){
 //---------------------------------------------------------------
 // FONCTION OUTIL: Supprime un élément de la file de dégustation.
 void defiler_FileDeg(File_Degustation* f){
-    //DONC je retire au début
     if(fileDeg_est_vide(f) != 1){
+        Element_gtx * temp = f->Gateaux;
+        while(f->Gateaux->next != NULL)
+            f->Gateaux = f->Gateaux->next;
         Gateau * old = f->Gateaux->Gateau;
         f->Gateaux = f->Gateaux->next;
         free(old);
+        // Réinitialisation de f->Gateaux
+        f->Gateaux = temp;
     }
 }
 

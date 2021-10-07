@@ -31,6 +31,10 @@ int main() {
                 display_list(gout);
                 break; }
 
+            case 3: { printf("Debut de l'algorithme:\n");
+                char * ChaineTest = "CMV";
+                conversion(ChaineTest);
+                break; }
         // III. Affichage par défaut (si erreurs).
             default : {
                 printf("Au revoir");

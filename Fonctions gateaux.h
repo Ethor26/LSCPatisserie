@@ -10,7 +10,7 @@
 # include "Tools.h"
 
 // ****************************************
-// PARTIE 2 : Fonctions de conception et demande de gateau
+// PARTIE 1 : Fonctions de conception et demande de gateau
 
 // ----------------------------------------
 // FONCTION : Initialise la liste des gouts possibles
@@ -24,8 +24,12 @@ void passer_commande(char commande[50], File_Commandes* f_commandes );
 // FONCTION : Récupération d'une commande de la liste de commandes.
 Element_str* traiter_commande(File_Commandes* f_commandes);
 
+// --------------------------------------------------------
+// FONCTION Convertissant une commande en une liste chainée.
+Element_str* conversion(char com[50]);
+
 // ****************************************
-// PARTIE 3 : Fonctions de creation et livraison de gateau
+// PARTIE 2 : Fonctions de creation et livraison de gateau
 
 // ----------------------------------------
 // FONCTION : Création de gateau à partir d'une commande

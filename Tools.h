@@ -25,6 +25,7 @@
 void viderBuffer();
 int Lire(char *chaine, int longueur);
 void LireInt(int * valeur);
+char * ConvCharChaine(char c);
 
 // ****************************************
 // PARTIE 0 : STRUCTURES
@@ -74,6 +75,18 @@ typedef struct File_Degustation{
 // - - - - - Pour Structure de Element str
 
 // --------------------------------------------------------------
+// FONCTION OUTIL qui créée une LSC d'Element_str
+Element_str* creer_list(char ch[50]);
+
+// --------------------------------------------------------------
+// FONCTION OUTIL qui ajoute une valeur à la fin de la LSC d'Element_str
+void ajout_val_fin_rec(Element_str** ad_liste, char txt[50]);
+
+// --------------------------------------------------------------
+// FONCTION OUTIL qui mesure la taille de la LSC d'Element_str
+int nb_el(Element_str* list);
+
+// --------------------------------------------------------------
 // Affichage LSC de chaine de caractères.
 void display_list(Element_str * liste);
 
@@ -96,6 +109,10 @@ char * depiler_gouts(Pile_Gouts * p);
 //---------------------------------------------------------------
 // FONCTION OUTIL: Initialise la file de commandes.
 File_Commandes * creer_file_Cmd();
+
+//---------------------------------------------------------------
+// FONCTION OUTIL: Verifie si la liste de commande est vide.
+int file_commande_vide(File_Commandes* f);
 
 // - - - - - Pour Structure de File_Degustation
 

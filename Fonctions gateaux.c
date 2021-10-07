@@ -1,25 +1,92 @@
 #include "Fonctions gateaux.h"
 #include "stdlib.h"
 
+// ****************************************
+// PARTIE 1 : Fonctions de conception et demande de gateau
+
+// ----------------------------------------
+// FONCTION : Initialise la liste des gouts possibles
 Element_str* initialiser_gouts(){
 
 }
+/*
 
+// ----------------------------------------
+// FONCTION : Convertie la liste de gout en commande de gateau
 void passer_commande(char commande[50], File_Commandes* f_commandes ){
-
+    if (nb_el(f_commandes->Gateaux) <10)
+    {
+        Element_str *nouv_el = NULL;
+        ajout_val_fin_rec(&nouv_el, com);
+        nouv_el->next = NULL;
+        //Ajout à la fin
+        if (file_commande_vide(f_commandes) == 1) {
+            f_commandes->Gateaux = nouv_el;
+        }
+        else {
+            Element_str *temp = f_commandes->Gateaux;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = nouv_el;
+        }
+    }
+    else{
+        printf("0\n");
+    }
 }
 
+// ----------------------------------------
+// FONCTION : Récupération d'une commande de la liste de commandes.
 Element_str* traiter_commande(File_Commandes* f_commandes){
+    if (f_commandes != NULL){
+        Element_str* cpt = conversion(f_commandes->Gateaux->Gateau->commande);
+        Element_str* temp = f_commandes -> Gateaux -> Gateau -> next;
+        free(f_commandes -> Gateaux -> Gateau);
+        f_commandes -> Gateaux -> Gateau = temp;
+        return cpt; // f_commandes -> Gateaux -> Gateau était au départ f_commandes->commandes
+    }
+    return NULL;
+}
+*/
 
+// --------------------------------------------------------
+// FONCTION Convertissant une commande en une liste chainée.
+Element_str* conversion(char com[50]){
+    Element_str* list = creer_list(ConvCharChaine(com[0]));
+    // Element_str* list = creer_list((char[2]) { com[0], '\0' });
+    list->next = NULL;
+    for (int i =0; i <= 50; i++){
+        switch(com[i]){
+            case 'C':{ ajout_val_fin_rec(&list, "C"); goto Suite; }
+            case 'V':{ ajout_val_fin_rec(&list, "V"); goto Suite; }
+            case 'F':{ ajout_val_fin_rec(&list, "F"); goto Suite; }
+            case 'A':{ ajout_val_fin_rec(&list, "A"); goto Suite; }
+            case 'P':{ ajout_val_fin_rec(&list, "P"); goto Suite; }
+            case 'B':{ ajout_val_fin_rec(&list, "B"); goto Suite; }
+            case 'M':{ ajout_val_fin_rec(&list, "M"); goto Suite; }
+            case '\0':return list;
+        }
+            Suite:
+        display_list(list);
+    }
+    return list;
 }
 
+// ****************************************
+// PARTIE 2 : Fonctions de creation et livraison de gateau
+
+// ----------------------------------------
+// FONCTION : Création de gateau à partir d'une commande
 Gateau* creer_gateau(Element_str* commande){
-Gateau* G;
-G = (Gateau*) malloc(sizeof(Gateau));
-G->commande = commande;
-return G;
+    Gateau* G;
+    G = (Gateau*) malloc(sizeof(Gateau));
+    G->commande = commande;
+    return G;
 }
 
+// ----------------------------------------
+// FONCTION : Assemblage des gouts du gateau commandé
 void construire_gateau(Gateau* gateau, Element_str* l_gouts){
     Element_str* temp;
     Element_str* temp2;
