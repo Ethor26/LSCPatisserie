@@ -7,7 +7,35 @@
 // ----------------------------------------
 // FONCTION : Initialise la liste des gouts possibles
 Element_str* initialiser_gouts(){
+    //on crée un premier pointeur
+    Element_str* gout = (Element_str*)malloc(sizeof(Element_str));
 
+    char T_gouts[7][20] = {{"Chocolat"},
+                           {"Vanille"},
+                           {"Fraise"},
+                           {"Abricot"},
+                           {"Pomme"},
+                           {"Banane"},
+                           {"Myrtille"}};
+    // ce compteur va permettre de naviguer dans le tableau de gouts
+    int cpt = 0;
+    strcpy(gout->texte, T_gouts[cpt]);
+    gout->next = NULL;
+
+    //on naviguera dans la LSC grace à temp
+    Element_str* temp = gout;
+
+    while(cpt < 6){
+        cpt++;
+        // on cré une nouvelle chaine qu'on lira à la chaine précédente
+        Element_str* temp2 = (Element_str*)malloc(sizeof(Element_str));
+        strcpy(temp2->texte, T_gouts[cpt]);
+        temp2->next = NULL;
+        temp->next = temp2;
+        // on avance dans temp
+        temp = temp->next;
+    }
+    return gout;
 }
 /*
 
