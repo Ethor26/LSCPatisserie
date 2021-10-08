@@ -54,7 +54,7 @@ typedef struct Element_gtx{
 // ----------------------------------------
 // STRUCTURE 4: File de STRUCTURE3 pour la commande
 typedef struct File_Commandes{
-    struct Element_gtx* Gateaux;
+    struct Element_str* commande;
 }File_Commandes;
 
 // ----------------------------------------

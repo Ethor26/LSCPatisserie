@@ -145,14 +145,14 @@ char * depiler_gouts(Pile_Gouts * p){
 // FONCTION OUTIL: Initialise la file de commandes.
 File_Commandes * creer_file_Cmd(){
     File_Commandes * nouv_file = (File_Commandes*)malloc(sizeof(File_Commandes));
-    nouv_file->Gateaux = NULL;
+    nouv_file->commande = NULL;
     return nouv_file;
 }
 
 //---------------------------------------------------------------
 // FONCTION OUTIL: Verifie si la liste de commande est vide.
 int file_commande_vide(File_Commandes* f){
-    if(f->Gateaux == NULL){
+    if(f->commande == NULL){
         return 1;
     }
     else{
