@@ -117,24 +117,14 @@ Gateau* creer_gateau(Element_str* commande){
 // FONCTION : Assemblage des gouts du gateau commandé
 void construire_gateau(Gateau* gateau, Element_str* l_gouts){
     Element_str* temp;
-    Element_str* temp2;
-    Element_str* temp3;
     temp = l_gouts;
     for(int i = 0; i< strlen(gateau->commande->texte); i++){
         while(gateau->commande->texte[i] != temp->texte[0]){
             temp = temp->next;
         }
-        if(i==0){
-            temp2 = temp;
-            temp3 = temp2;
-        }
-        else{
-            temp2->next = temp;
-            temp2 = temp2->next;
-        }
+        ajout_val_fin_rec(&gateau->p_gouts->Gouts,temp->texte);
         temp = l_gouts;
-    }
-    gateau->p_gouts->Gouts = temp3;
+        }
 }
 
 // ----------------------------------------
