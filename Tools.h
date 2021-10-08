@@ -91,6 +91,9 @@ int nb_el(Element_str* list);
 void display_list(Element_str * liste);
 
 // - - - - - Pour Structure de Pile Gout
+// --------------------------------------------------------------
+// FONCTION OUTIL : initialise la pile des gouts
+Pile_Gouts* creer_pile_gout();
 
 //---------------------------------------------------------------
 // FONCTION OUTIL: Retourne la taille de la pile de gouts d'un gateau.

@@ -116,6 +116,14 @@ void display_list(Element_str * liste){
 // - - - - - Pour Structure de Pile Gout
 
 // --------------------------------------------------------------
+// FONCTION OUTIL : initialise la pile des gouts
+Pile_Gouts* creer_pile_gout(){
+    Pile_Gouts* nouv_pile = (Pile_Gouts*)malloc(sizeof(Pile_Gouts));
+    nouv_pile->Gouts = NULL;
+    return nouv_pile;
+}
+
+// --------------------------------------------------------------
 // FONCTION OUTIL : vérifie si la pile des gouts est vide
 int p_est_vide(Pile_Gouts* p){
         return (p->Gouts == NULL);
