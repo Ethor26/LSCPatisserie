@@ -6,9 +6,9 @@ int main() {
         int RefFich;
         int EcritCmd = 0; // Variable (booléens) vérifiant respectivement dans le main si la commande a
         // été écrite et recue.
-        Element_str* l_gouts = initialiser_gouts();
-        File_Commandes * f_commandes = creer_file_Cmd();
-        File_Degustation * f_degustation = creer_file_deg();
+        Element_str* l_gouts = initialiser_gouts(); //on crée la liste des gouts possible (voir Fonctions gateaux.c)
+        File_Commandes * f_commandes = creer_file_Cmd(); //on crée la file des commandes (voir Tools.c)
+        File_Degustation * f_degustation = creer_file_deg(); //on crée la file de degustation (voir Tools.c)
 
 /*Algorithme */
         printf("Entrez la reference de l'algorithme a tester: \n");
@@ -20,20 +20,20 @@ int main() {
                 ; // Creation d'un rubik's Cube: a voir si dans ce case ou hors de la fonction.
                 int ChoixUser;
                 do {
-                    ChoixUser = Interface_User(&EcritCmd, l_gouts, f_commandes, f_degustation);
+                    ChoixUser = Interface_User(&EcritCmd, l_gouts, f_commandes, f_degustation);//voir Fonctions gateux.c
                 }while(ChoixUser != 5);
 
-                break; }
+                break;}
 
         // II. Test de chacun
             case 2: { printf("Debut de l'algorithme:\n");
-                Element_str* gout = initialiser_gouts();
-                display_list(gout);
+                Element_str* gout = initialiser_gouts(); // voir Fonctions gateux.c
+                display_list(gout); //voir Tools.c
                 break; }
 
             case 3: { printf("Debut de l'algorithme:\n");
                 char * ChaineTest = "CMV";
-                conversion(ChaineTest);
+                conversion(ChaineTest); //voir Fonctions gateux.c
                 break; }
         // III. Affichage par défaut (si erreurs).
             default : {

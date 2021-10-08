@@ -84,7 +84,7 @@ Element_str* creer_list(char ch[50]){
 // FONCTION OUTIL qui ajoute une valeur à la fin de la LSC d'Element_str
 void ajout_val_fin_rec(Element_str** ad_liste, char txt[50]){
     if (*ad_liste == NULL) {
-        *ad_liste = creer_list(txt);
+        *ad_liste = creer_list(txt); // voir Tools.c
     } else {
         ajout_val_fin_rec(&((*ad_liste)->next), txt);
     }
