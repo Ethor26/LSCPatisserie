@@ -1,6 +1,7 @@
 #include "Fonctions gateaux.h"
 #include "stdlib.h"
 
+
 // ****************************************
 // PARTIE 1 : Fonctions de conception et demande de gateau
 
@@ -127,13 +128,17 @@ Gateau* creer_gateau(Element_str* commande){
 // FONCTION : Assemblage des gouts du gateau commandé
 void construire_gateau(Gateau* gateau, Element_str* l_gouts){
     Element_str* temp;
+    Element_str* temp2;
+    temp2 = gateau->commande;
     temp = l_gouts;
-    for(int i = 0; i< strlen(gateau->commande->texte); i++){
-        while(gateau->commande->texte[i] != temp->texte[0]){
+    while (temp2 != NULL){
+        while(temp2->texte[0] != temp->texte[0]){
             temp = temp->next;
         }
-        ajout_val_fin_rec(&gateau->p_gouts->Gouts,temp->texte);
+        ajout_val_deb(&gateau->p_gouts->Gouts,temp->texte);
+        display_list(gateau->p_gouts->Gouts);
         temp = l_gouts;
+        temp2 = temp2->next;
         }
 }
 

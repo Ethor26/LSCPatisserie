@@ -91,6 +91,18 @@ void ajout_val_fin_rec(Element_str** ad_liste, char txt[50]){
 }
 
 // --------------------------------------------------------------
+// FONCTION OUTIL qui ajoute une valeur à la fin de la LSC d'Element_str
+void ajout_val_deb(Element_str** ad_liste, char txt[50]){
+    if (*ad_liste == NULL) {
+        *ad_liste = creer_list(txt); // voir Tools.c
+    } else {
+        Element_str* nouvel_el = creer_list(txt);
+        nouvel_el->next = *ad_liste;
+        *ad_liste = nouvel_el;
+    }
+}
+
+// --------------------------------------------------------------
 // FONCTION OUTIL qui mesure la taille de la LSC d'Element_str
 int nb_el(Element_str* list){
     int cpt = 0;
