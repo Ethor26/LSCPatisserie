@@ -214,7 +214,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
             printf("Commande recue\n");
             return ChoixUser;
         }
-        case 2 : {
+        case 2 : { // si il y a une commande il affiche la commande sinon il affiche qu'il faut ajouter une commande
             if(*EcritCmd) {
                 printf("2) Reception de commande.\n"); // Affiche le choix proposé
                 Element_str * liste_gouts_toDo = traiter_commande(f_commandes);
@@ -229,7 +229,8 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
                 printf("Ecrivez une commande avant.\n");
             return ChoixUser;
         }
-        case 3 : {
+        case 3 : { // si la liste de degustation n'est pas vide il deguste un gateau et retourne le nombre restant de part
+            // sinon il y pas de gateau il affiche qu'il y en a pas
             printf("3) Degustation d'un gateau.\n"); // Affiche le choix proposé
             if(fileDeg_est_vide(f_degustations) == 0) {
                 int NbPartRest = degust1Gateau(f_degustations->Gateaux->Gateau, &f_degustations);
@@ -239,7 +240,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
                 printf("Pas de gateaux dans la liste de degustation\n");
             return ChoixUser;
         }
-        case 4 : {
+        case 4 : {// il deguste tout les gateaux qu'il reste et il affiche que tout est mangée sinon il dit qu'il n'y a pas de gateau
             printf("4) Degustation de tous les gateaux.\n"); // Affiche le choix proposé
             if(f_degustations->Gateaux != NULL){
                 degustation(f_degustations); //+ verif si non vide
@@ -249,7 +250,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
                 printf("Pas de gateaux dans la liste de degustation\n");
             return ChoixUser;
         }
-        case 5 : {
+        case 5 : {// retourne 5 et affiche fin de programme
             printf("5) Fin du programme.\n"); // Affiche le choix proposé
             return ChoixUser;
         }
