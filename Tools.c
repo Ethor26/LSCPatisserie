@@ -35,14 +35,12 @@ int Lire(char *chaine, int longueur)
             // mettant avec son caractère de fin (sinon on le vide).
             *positionEntree = '\0';
         }
-        else
-        {
+        else{
             viderBuffer();
         }
         return 1;
     }
-    else
-    {
+    else{
         viderBuffer();
         return 0;
     }
