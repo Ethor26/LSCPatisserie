@@ -44,6 +44,12 @@ void construire_gateau(Gateau* gateau, Element_str* l_gouts);
 void livrer(Gateau* gateau, File_Degustation* f_degustation);
 
 // ----------------------------------------
+// FONCTION : Ordonnation la dégustation du client pour un gateau, retourne le nombre de parts restantes (s'il y en a).
+// IMPORTANT : on considère qu'une part correspond à un gout de la pile de gout, le nombre de part aléatoire varie donc
+// entre 0 et 50.
+int degust1Gateau(Gateau * ElGateau, File_Degustation** f_degustation);
+
+// ----------------------------------------
 // FONCTION : Ordonnation de la dégustation du client : gateau à déguster et nombre de part.
 void degustation(File_Degustation* f_degustation);
 

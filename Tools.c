@@ -11,8 +11,8 @@
 // FONCTIONS OUTILS utilisées dans le reste du programme saisie sécurisée (empêche le problème de saisie de caractère.
 
 // --------------------------------------------------------------
-//FONCTION permettant de vider le buffer (emplacement de stockage en mémoire, par exemple de caractère) pour éviter les
-// débordements
+//FONCTION permettant de vider le buffer (emplacement de stockage en mémoire d'une entrée, par exemple de caractère)
+// pour éviter les débordements
 void viderBuffer()
 {
     int c = 0;
@@ -28,11 +28,11 @@ int Lire(char *chaine, int longueur)
 {
     char *positionEntree = NULL;
 
-    if (fgets(chaine, longueur, stdin) != NULL)
-    {
+    if (fgets(chaine, longueur, stdin) != NULL){ //Ecriture d'une chaine de longueur "longueur" s'il y a de la place
+        // dans le buffer
         positionEntree = strchr(chaine, '\n');
-        if (positionEntree != NULL)
-        {
+        if (positionEntree != NULL){ // Si l'écriture de fgets ne remplit pas le buffer, on "valide" la chaine en
+            // mettant avec son caractère de fin (sinon on le vide).
             *positionEntree = '\0';
         }
         else
@@ -55,9 +55,10 @@ void LireInt(int * valeur)
 {
     char nombreTexte[100] = {0}; // 100 cases devraient suffire
     do{
-        Lire(nombreTexte, 100);
-        *valeur = strtol(nombreTexte, NULL, 10);
-    }while(*valeur == 0 && strcmp(nombreTexte, "0") != 0);
+        Lire(nombreTexte, 100); //Ecriture de l'entrée sous la forme d'une chaine de caractères
+        *valeur = strtol(nombreTexte, NULL, 10); // Conversion de la chaine de caractères en un entier
+    }while(*valeur == 0 && strcmp(nombreTexte, "0") != 0); // répéter tant que l'entier n'est pas entrée (sinon,
+    // insertion de la fonction dans une boucle empêche son activation).
 }
 
 char * ConvCharChaine(char c){ // transforme un caractère en chaine de caractères
@@ -95,7 +96,9 @@ int VerifGout(char com[]){
         }
         if (check == 0) return 0; // si check vaut 0, on a une lettre hors de l'ensemble, donc on retourne 0
     }
-    return 1; // tout va bien, on retourns 1
+    if(com[0] != '\0') // Si la chaine est vide, on retourne 0
+        return 0;
+    return 1; // tout va bien, on retourne 1
 }
 
 // - - - - - Pour Structure de Element str
@@ -229,7 +232,7 @@ char * depiler_gouts(Pile_Gouts * p){
 // FONCTION OUTIL : pour libérer LSC d'Element_str
 void free_pile_gout(Pile_Gouts* PG){ // fonction recursive
     if (p_est_vide(PG)== 0){ // fonction qui renvoie 0 si PG est vide
-        free_Element_str(PG->Gouts); // voir Tools.c ligne 161
+        free_Element_str(PG->Gouts);
     }
 }
 
@@ -300,11 +303,12 @@ int fileDeg_est_vide(File_Degustation* f){
 void defiler_FileDeg(File_Degustation* f){
     if(fileDeg_est_vide(f) != 1){
         Element_gtx * temp = f->Gateaux;
-        while(f->Gateaux->next != NULL)
+        while(f->Gateaux->next->next != NULL)
             f->Gateaux = f->Gateaux->next;
-        Element_gtx * old = f->Gateaux;
-        f->Gateaux = f->Gateaux->next;
-        free_Element_gtx(old);
+        Element_gtx * old = f->Gateaux->next;
+        f->Gateaux->next = f->Gateaux->next->next;
+        free_gateau(old->Gateau);
+        free(old);
         // Réinitialisation de f->Gateaux
         f->Gateaux = temp;
     }
