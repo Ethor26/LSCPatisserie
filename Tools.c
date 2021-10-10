@@ -60,7 +60,7 @@ void LireInt(int * valeur)
     }while(*valeur == 0 && strcmp(nombreTexte, "0") != 0);
 }
 
-char * ConvCharChaine(char c){
+char * ConvCharChaine(char c){ // transforme un caractère en chaine de caractères
     return ((char[2]) { c, '\0' });
 }
 
@@ -84,6 +84,20 @@ int ChoixFaim(){
     return 0;
 }
 
+// --------------------------------------------------------------
+//FONCTION renvoyant 1 si les lettre d'une chaine de caractère font bien toutes partie de l'ensemble {CVFAPBM}, 0 sinon
+int VerifGout(char com[]){
+    char gouts[8] = "CVFAPBM";
+    int check = 0;
+    for(int i=0; i<strlen(com); i++){ // pour chaque lettre dans la CC com
+        for(int j=0; j<7; j++){ // dans l'ensemble de lettre {CVFAPBM}
+            if (com[i] == gouts[j]) check = 1; // si la lettre de com se trouve dans l'ensemble, on check 1
+        }
+        if (check == 0) return 0; // si check vaut 0, on a une lettre hors de l'ensemble, donc on retourne 0
+    }
+    return 1; // tout va bien, on retourns 1
+}
+
 // - - - - - Pour Structure de Element str
 
 // --------------------------------------------------------------
@@ -91,7 +105,7 @@ int ChoixFaim(){
 Element_str* creer_list(char ch[50]){
     Element_str* list_g;
     list_g = (Element_str*) malloc(sizeof (Element_str));
-    for (int i =0; i<= 50; i++)
+    for (int i =0; i<= 50; i++) // on va copier la CC ch[50] dans list_g -> texte
         list_g -> texte[i] = ch[i];
     list_g -> next = NULL;
     return list_g;
@@ -114,8 +128,8 @@ void ajout_val_deb(Element_str** ad_liste, char txt[50]){
         *ad_liste = creer_list(txt); // voir Tools.c
     } else {
         Element_str* nouvel_el = creer_list(txt);
-        nouvel_el->next = *ad_liste;
-        *ad_liste = nouvel_el;
+        nouvel_el->next = *ad_liste; // on enregiste la position de la première chaine
+        *ad_liste = nouvel_el; // on décale le tout
     }
 }
 
@@ -123,16 +137,16 @@ void ajout_val_deb(Element_str** ad_liste, char txt[50]){
 // FONCTION OUTIL qui mesure la taille de la LSC d'Element_str
 int nb_el(Element_str* list){
     int cpt = 0;
-    while (list != NULL){
+    while (list != NULL){ // on parcours la liste
         cpt++;
         list = list -> next;
     }
-    return cpt;
+    return cpt; //on retourne le nombre de boucles
 }
 
 // --------------------------------------------------------------
 // FONCTION OUTIL Affichage LSC de chaine de caractères.
-void display_list(Element_str * liste){
+void display_list(Element_str * liste){ // fonction recursive (cf cours)
     if (liste != NULL){
         printf("%s-->", liste->texte);
         display_list(liste->next);
@@ -240,6 +254,14 @@ int file_commande_vide(File_Commandes* f){
     }
 }
 
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer file de commande
+void free_FILE_commande(File_Commandes* cmd){
+    if (file_commande_vide(cmd) == 0){
+        free_Element_str(cmd->commande);
+    }
+}
+
 // - - - - - Pour Structure de File_Degustation
 
 //---------------------------------------------------------------
@@ -285,6 +307,14 @@ void defiler_FileDeg(File_Degustation* f){
         free_Element_gtx(old);
         // Réinitialisation de f->Gateaux
         f->Gateaux = temp;
+    }
+}
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer file de dégustation
+void free_file_degustation(File_Degustation* D){
+    if (fileDeg_est_vide(D) == 0){
+        free_Element_gtx(D->Gateaux);
     }
 }
 

@@ -16,10 +16,6 @@
 // FONCTION : Initialise la liste des gouts possibles
 Element_str* initialiser_gouts();
 
-// --------------------------------------------------------------
-//FONCTION renvoyant 1 si les lettre sont bien dans CVFAPBM, 0 sinon
-int VerifGout(char com[]);
-
 // ----------------------------------------
 // FONCTION : Convertie la liste de gout en commande de gateau
 void passer_commande(char commande[50], File_Commandes* f_commandes );

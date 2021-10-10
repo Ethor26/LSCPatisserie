@@ -46,9 +46,9 @@ void passer_commande(char commande[50], File_Commandes* f_commandes){
 
         // Ajout à la fin de la file LSC f_commandes le nouvel element nouv_el
         if (file_commande_vide(f_commandes)) { // on regarde si la liste est vide ou non, voir fonctions Tools.c
-            f_commandes->commande = nouv_el;
+            f_commandes->commande = nouv_el; // si oui on ajoute directement la chaine
         }
-        else {
+        else { // si non on ajoute la chaine à la fin
             Element_str *temp = f_commandes->commande;
             while (temp->next != NULL) {
                 temp = temp->next;
@@ -59,20 +59,6 @@ void passer_commande(char commande[50], File_Commandes* f_commandes){
     else{
         printf("Liste de commandes pleine.\n");
     }
-}
-
-// --------------------------------------------------------------
-//FONCTION renvoyant 1 si les lettre sont bien dans CVFAPBM, 0 sinon
-int VerifGout(char com[]){
-    char gouts[8] = "CVFAPBM";
-    int check = 0;
-    for(int i=0; i<strlen(com); i++){
-        for(int j=0; j<7; j++){
-            if (com[i] == gouts[j]) check = 1;
-        }
-        if (check == 0) return 0;
-    }
-    return 1;
 }
 
 // ----------------------------------------
@@ -117,8 +103,8 @@ Element_str* conversion(char com[50]){
 Gateau* creer_gateau(Element_str* commande){
     Gateau* G;
     G = (Gateau*)malloc(sizeof(Gateau));
-    G->commande = commande;
-    G->p_gouts = creer_pile_gout();
+    G->commande = commande; // on ajoute a commande la commande de l'utilisateur
+    G->p_gouts = creer_pile_gout(); // on ajoute a p_gouts une pile de gouts, voir Tools.c
     return G;
 }
 
@@ -132,20 +118,20 @@ void construire_gateau(Gateau* gateau, Element_str* l_gouts){
         while(temp2->texte[0] != temp->texte[0] && temp->next != NULL){ // tant que leur premières lettre sont diff et que la liste est non nulle
             temp = temp->next;// on passe augout suivant jusqu'a qu'on trouve le gout correspondant
         }
-        ajout_val_deb(&gateau->p_gouts->Gouts,temp->texte);
-        display_list(gateau->p_gouts->Gouts);
-        temp = l_gouts;
-        temp2 = temp2->next;
+        ajout_val_deb(&gateau->p_gouts->Gouts,temp->texte); // on ajoute au début de la pile le gout de temp, voir Tools.c
+        display_list(gateau->p_gouts->Gouts); // voir Tools.c
+        temp = l_gouts; // on réinitialise temp
+        temp2 = temp2->next; // on avance à la chaine suivante
         }
 }
 
 // ----------------------------------------
 // FONCTION : Ajout du gateau préparé dans la file de dégustation
 void livrer(Gateau* gateau, File_Degustation* f_degustation){
-    Element_gtx * ElGat = malloc(sizeof(Element_gtx));
-    ElGat->Gateau = gateau;
-    ElGat->next = f_degustation->Gateaux;
-    f_degustation->Gateaux = ElGat;
+    Element_gtx * ElGat = malloc(sizeof(Element_gtx)); // on crée la boite du gateau
+    ElGat->Gateau = gateau; // on y insert le gateau
+    ElGat->next = f_degustation->Gateaux; // on enregistre la place du premier gateau dans la file (et le premier de la LSC)
+    f_degustation->Gateaux = ElGat; // notre boite devient le premier dans la file (et le premier de la LSC)
     ElGat->Gateau->commande = NULL;
 }
 
@@ -195,7 +181,7 @@ void degustation(File_Degustation* f_degustation){
             printf("Gateau %d mange\n", NbGat);
             temp->Gateaux = temp->Gateaux->next;
         }
-        else{
+        else{ // cas ou il reste des gateaux et les parts restantese du n-ième gateau
             printf("Il reste %d parts a manger du Gateau %d\n", NbPartRest, NbGat);
         }
     }
