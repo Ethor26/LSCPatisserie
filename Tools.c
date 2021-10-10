@@ -67,6 +67,23 @@ char * ConvCharChaine(char c){
 // ***************************************************************
 // FONCTIONS OUTILS pour la création et manipulation de LSC.
 
+// - - - - Fonctions utilitaires
+
+// ----------------------------------------
+// FONCTION : Permet à l'utilisateur de choisir sa faim pour limiter le nombre de parts aléatoire possible.
+int ChoixFaim(){
+    int Faim;
+    do{
+        printf("Entrez 1 pour grande fin et 2 pour petite faim\n");
+        LireInt(&Faim);
+    }while(Faim != 1 && Faim != 2); // Saisie sécurisée de la faim
+    if(Faim == 2)
+        return 1 + rand() % 10; // Si petite faim, nombre de part entre 0 et 10
+    else if(Faim == 1)
+        return 1 + rand() % 50; // Si grande faim, nombre de part entre 0 et 50 (maximum de la chaine de gout)
+    return 0;
+}
+
 // - - - - - Pour Structure de Element str
 
 // --------------------------------------------------------------
@@ -125,6 +142,43 @@ void display_list(Element_str * liste){
     }
 }
 
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer LSC d'Element_str
+void free_Element_str(Element_str* el){
+    // Element_str * temp = el;
+    while(el != NULL) { // on parcours la liste
+        Element_str * old = el;
+        el = el->next; // on save la place de l'élément suivant
+        free(old); // on free l'element présent
+    }
+}
+
+// - - - - - Pour Structure de Gateau
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer structure Gateau
+void free_gateau(Gateau* G){
+    if (G != NULL){
+        free_Element_str(G->commande); // on free G->commande, voir Tools.c
+        free_pile_gout(G->p_gouts);
+        free(G);
+    }
+}
+
+// - - - - - Pour Structure de Elemnet_gtx
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer structure Element_gtx
+void free_Element_gtx(Element_gtx* G){
+    while(G != NULL){
+        Element_gtx * old = G;
+        G = G->next;
+        free_gateau(old->Gateau);
+        free(old);
+    }
+}
+
+
 // - - - - - Pour Structure de Pile Gout
 
 // --------------------------------------------------------------
@@ -157,7 +211,13 @@ char * depiler_gouts(Pile_Gouts * p){
     }
 }
 
-
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer LSC d'Element_str
+void free_pile_gout(Pile_Gouts* PG){ // fonction recursive
+    if (p_est_vide(PG)== 0){ // fonction qui renvoie 0 si PG est vide
+        free_Element_str(PG->Gouts); // voir Tools.c ligne 161
+    }
+}
 
 // - - - - - Pour Structure de File_commande
 
@@ -214,25 +274,26 @@ int fileDeg_est_vide(File_Degustation* f){
 }
 
 //---------------------------------------------------------------
-// FONCTION OUTIL: Supprime un élément de la file de dégustation.
+// FONCTION OUTIL: Supprime un élément de la file de dégustation (le dernier) : ON ajoute au début et on supprime à la fin
 void defiler_FileDeg(File_Degustation* f){
     if(fileDeg_est_vide(f) != 1){
         Element_gtx * temp = f->Gateaux;
         while(f->Gateaux->next != NULL)
             f->Gateaux = f->Gateaux->next;
-        Gateau * old = f->Gateaux->Gateau;
+        Element_gtx * old = f->Gateaux;
         f->Gateaux = f->Gateaux->next;
-        free(old);
+        free_Element_gtx(old);
         // Réinitialisation de f->Gateaux
         f->Gateaux = temp;
     }
 }
 
 // --------------------------------------------------------------
-// Libération file de dégustation
+// FONCTION OUTIL : pour libérer file de dégustation
 void free_list_Degust(File_Degustation* liste){
     while(fileDeg_est_vide(liste) != 1){
         defiler_FileDeg(liste);
     }
     free(liste);
 }
+

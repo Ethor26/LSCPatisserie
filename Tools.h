@@ -72,6 +72,16 @@ typedef struct File_Degustation{
 // ***************************************************************
 // FONCTIONS OUTILS pour la création et manipulation de LSC.
 
+// - - - - Fonctions utilitaires
+
+// ----------------------------------------
+// FONCTION : Permet à l'utilisateur de choisir sa faim pour limiter le nombre de parts aléatoire possible.
+int ChoixFaim();
+
+// --------------------------------------------------------------
+//FONCTION renvoyant 1 si les lettre d'une chaine de caractère font bien toutes partie de l'ensemble {CVFAPBM}, 0 sinon
+int VerifGout(char com[]);
+
 // - - - - - Pour Structure de Element str
 
 // --------------------------------------------------------------
@@ -85,6 +95,7 @@ void ajout_val_fin_rec(Element_str** ad_liste, char txt[50]);
 // --------------------------------------------------------------
 // FONCTION OUTIL qui ajoute une valeur au début de la LSC d'Element_str
 void ajout_val_deb(Element_str** ad_liste, char txt[50]);
+
 // --------------------------------------------------------------
 // FONCTION OUTIL qui mesure la taille de la LSC d'Element_str
 int nb_el(Element_str* list);
@@ -93,7 +104,22 @@ int nb_el(Element_str* list);
 // Affichage LSC de chaine de caractères.
 void display_list(Element_str * liste);
 
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer LSC d'Element_str
+void free_Element_str(Element_str* el);
+
+// --------------------------------------------------------------
+//FONCTION renvoyant 1 si les lettre sont bien dans CVFAPBM, 0 sinon
+int VerifGout(char com[]);
+
+// - - - - - Pour Structure de Gateau
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer structure Gateau
+void free_gateau(Gateau* G);
+
 // - - - - - Pour Structure de Pile Gout
+
 // --------------------------------------------------------------
 // FONCTION OUTIL : initialise la pile des gouts
 Pile_Gouts* creer_pile_gout();
@@ -110,6 +136,10 @@ int p_est_vide(Pile_Gouts* p);
 // FONCTION OUTIL : dépile la pile des gouts d'un gateau
 char * depiler_gouts(Pile_Gouts * p);
 
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer LSC d'Element_str
+void free_pile_gout(Pile_Gouts* PG);
+
 // - - - - - Pour Structure de File_commande
 
 //---------------------------------------------------------------
@@ -119,6 +149,10 @@ File_Commandes * creer_file_Cmd();
 //---------------------------------------------------------------
 // FONCTION OUTIL: Verifie si la liste de commande est vide.
 int file_commande_vide(File_Commandes* f);
+
+// --------------------------------------------------------------
+// FONCTION OUTIL : pour libérer file de commande
+void free_FILE_commande(File_Commandes* cmd);
 
 // - - - - - Pour Structure de File_Degustation
 
@@ -135,5 +169,10 @@ int fileDeg_est_vide(File_Degustation* f);
 void defiler_FileDeg(File_Degustation* f);
 
 // --------------------------------------------------------------
-// FONCTION OUTIL: Libération de la file de dégustation.
+// FONCTION OUTIL : pour libérer file de dégustation (V1)
+void free_file_degustation(File_Degustation* D);
+
+// --------------------------------------------------------------
+// FONCTION OUTIL: Libération de la file de dégustation. (V2)
 void free_list_Degust(File_Degustation* liste);
+

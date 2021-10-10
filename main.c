@@ -16,12 +16,15 @@ int main() {
         switch(RefFich){
         // I. Algos principal
             case 1 : { printf("Debut de l'algorithme principal :\n");
-                // Creation du rubik (pas dans le choix de l'utilisateur)
-                ; // Creation d'un rubik's Cube: a voir si dans ce case ou hors de la fonction.
                 int ChoixUser;
                 do {
                     ChoixUser = Interface_User(&EcritCmd, l_gouts, f_commandes, f_degustation);//voir Fonctions gateux.c
-                }while(ChoixUser != 5);
+                }while(ChoixUser != 5); //Lancement de l'interface tant que l'utilisateur n'arrete pas le programme
+
+                //Libération
+                free_file_degustation(f_degustation);
+                free_FILE_commande(f_commandes);
+                free_Element_str(l_gouts);
 
                 break;}
 
@@ -33,8 +36,18 @@ int main() {
 
             case 3: { printf("Debut de l'algorithme:\n");
                 char * ChaineTest = "CMV";
-                conversion(ChaineTest); //voir Fonctions gateux.c
+                int nbr = ChoixFaim();
+                // conversion(ChaineTest); //voir Fonctions gateux.c
                 break; }
+
+            case 4: { printf("Debut de l'algorithme:\n");
+                Element_str * ListeStrTest = creer_list("CMV");
+                ajout_val_deb(&ListeStrTest, "VC");
+                display_list(ListeStrTest);
+                free_Element_str(ListeStrTest);
+                display_list(ListeStrTest);
+                break; }
+
         // III. Affichage par défaut (si erreurs).
             default : {
                 printf("Au revoir");

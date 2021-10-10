@@ -1,6 +1,4 @@
 #include "Fonctions gateaux.h"
-#include "stdlib.h"
-
 
 // ****************************************
 // PARTIE 1 : Fonctions de conception et demande de gateau
@@ -127,13 +125,12 @@ Gateau* creer_gateau(Element_str* commande){
 // ----------------------------------------
 // FONCTION : Assemblage des gouts du gateau commandé
 void construire_gateau(Gateau* gateau, Element_str* l_gouts){
-    Element_str* temp;
-    Element_str* temp2;
-    temp2 = gateau->commande;
-    temp = l_gouts;
-    while (temp2 != NULL){
-        while(temp2->texte[0] != temp->texte[0]){
-            temp = temp->next;
+    Element_str* temp = l_gouts; // pour naviguer dans l_gouts
+    Element_str* temp2 = gateau->commande; // pour naviguer dans gateau->commande
+
+    while (temp2 != NULL){ // tant qu'on a pas fini de parcourir temp2
+        while(temp2->texte[0] != temp->texte[0] && temp->next != NULL){ // tant que leur premières lettre sont diff et que la liste est non nulle
+            temp = temp->next;// on passe augout suivant jusqu'a qu'on trouve le gout correspondant
         }
         ajout_val_deb(&gateau->p_gouts->Gouts,temp->texte);
         display_list(gateau->p_gouts->Gouts);
@@ -152,36 +149,47 @@ void livrer(Gateau* gateau, File_Degustation* f_degustation){
     ElGat->Gateau->commande = NULL;
 }
 
+
 // ----------------------------------------
 // FONCTION : Ordonnation la dégustation du client pour un gateau, retourne le nombre de parts restantes (s'il y en a).
+// IMPORTANT : on considère qu'une part correspond à un gout de la pile de gout, le nombre de part aléatoire varie donc
+// entre 0 et 50.
 int degust1Gateau(Gateau * ElGateau){
-    Gateau * Parcours = ElGateau;
-    int nb_parts = 1 + rand() % 50;
-    printf("%d parts vont etre mangees. \n", nb_parts);
-    int cpt = 0;
-    while(cpt<nb_parts){
-        if(Parcours->p_gouts->Gouts != NULL){
-            Element_str * temp = Parcours->p_gouts->Gouts->next;
-            depiler_gouts(ElGateau->p_gouts);
-            Parcours->p_gouts->Gouts = temp;
-            cpt++;
+    if(ElGateau->p_gouts != NULL){
+        Gateau * Parcours = ElGateau;
+        int nb_parts = ChoixFaim();
+        printf("%d parts vont etre mangees. \n", nb_parts);
+        int cpt = 0;
+        while(cpt<nb_parts){
+            if(Parcours->p_gouts->Gouts != NULL){
+                Element_str * temp = Parcours->p_gouts->Gouts->next;
+                depiler_gouts(ElGateau->p_gouts);
+                Parcours->p_gouts->Gouts = temp;
+                cpt++;
+            }
+            else{
+                return 0;
+            }
         }
-        else{
-            return 0;
-        }
+        printf("Parts restantes (test)");
+        return(taille_LSC_Gateau(ElGateau->p_gouts->Gouts)-nb_parts); // Remplacer 1 par taille de LSC
     }
-    printf("Parts restantes (test)");
-    return(taille_LSC_Gateau(ElGateau->p_gouts->Gouts)-nb_parts); // Remplacer 1 par taille de LSC
+    else{
+        printf("Erreur : gateau déjà mangé");
+        return 0;
+    }
 }
 
 // ----------------------------------------
 // FONCTION : Ordonnation de la dégustation du client : gateau à déguster et nombre de part.
 void degustation(File_Degustation* f_degustation){
-    File_Degustation* temp = f_degustation;
+    File_Degustation* temp = f_degustation; // pour naviguer dans f_degustation
     int NbGat = 0;
-    while(temp->Gateaux != NULL){
-        int NbPartRest = degust1Gateau(f_degustation->Gateaux->Gateau);
-        if(NbPartRest == 0){
+    if(fileDeg_est_vide(f_degustation))
+        printf("File de dégustation vide");
+    while(fileDeg_est_vide(f_degustation) == 0){ // tant qu'on a pas fini de naviguer dans las LSC
+        int NbPartRest = degust1Gateau(f_degustation->Gateaux->Gateau); // ??
+        if(NbPartRest == 0){ // cas ou tout a été mangé
             NbGat++;
             defiler_FileDeg(f_degustation);
             printf("Gateau %d mange\n", NbGat);
@@ -207,7 +215,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
 
     switch(ChoixUser){
         case 1 : {
-            printf("Ecriture de la commande.\n"); // Affiche le choix proposé
+            printf("1) Ecriture de la commande.\n"); // Affiche le choix proposé
             // Fonction passer_commande
             char cmd[50];
             do{
@@ -222,7 +230,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
         }
         case 2 : {
             if(*EcritCmd) {
-                printf("Reception de commande.\n"); // Affiche le choix proposé
+                printf("2) Reception de commande.\n"); // Affiche le choix proposé
                 Element_str * liste_gouts_toDo = traiter_commande(f_commandes);
                 display_list(liste_gouts_toDo); // Pour test
 
@@ -236,7 +244,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
             return ChoixUser;
         }
         case 3 : {
-            printf("Degustation d'un gateau.\n"); // Affiche le choix proposé
+            printf("3) Degustation d'un gateau.\n"); // Affiche le choix proposé
             if(f_degustations->Gateaux != NULL) {
                 int NbPartRest = degust1Gateau(f_degustations->Gateaux->Gateau);
                 printf("Il reste %d parts a manger du Gateau.\n", NbPartRest);
@@ -246,7 +254,7 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
             return ChoixUser;
         }
         case 4 : {
-            printf("Degustation de tous les gateaux.\n"); // Affiche le choix proposé
+            printf("4) Degustation de tous les gateaux.\n"); // Affiche le choix proposé
             if(f_degustations->Gateaux != NULL){
                 degustation(f_degustations); //+ verif si non vide
                 printf("Tous les gateaux ont ete degustes.\n");
@@ -256,15 +264,15 @@ int Interface_User(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comm
             return ChoixUser;
         }
         case 5 : {
-            printf("Fin du programme.\n"); // Affiche le choix proposé
+            printf("5) Fin du programme.\n"); // Affiche le choix proposé
             return ChoixUser;
         }
 
         case 6 : {
             int NbChang;
-            printf("Commande Aleatoire : entrez le nombre de changements.\n"); // Affiche le choix proposé
+            printf("6) Commande Aleatoire : entrez le nombre de changements.\n"); // Affiche le choix proposé
             LireInt(&NbChang);
-            for(int i = 0; i<NbChang; i++)
+            for(int i = 0; i<NbChang; i++) // Remplacer par while avec aleat qui retourne le nbr de fin de programme
                 Aleat_Choix(EcritCmd, l_gouts, f_commandes, f_degustations);
             return ChoixUser;
         }
@@ -281,7 +289,7 @@ void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comman
     int ChoixUser = 1 + rand() % 5;
     switch(ChoixUser){
         case 1 : {
-            printf("Ecriture de la commande.\n"); // Affiche le choix proposé
+            printf("1) Ecriture de la commande.\n"); // Affiche le choix proposé
             // Fonction passer_commande
             char cmd[50];
             do{
@@ -297,7 +305,7 @@ void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comman
 
         case 2 : {
             if(*EcritCmd) {
-                printf("Reception de commande.\n"); // Affiche le choix proposé
+                printf("2) Reception de commande.\n"); // Affiche le choix proposé
                 Element_str * liste_gouts_toDo = traiter_commande(f_commandes);
                 display_list(liste_gouts_toDo); // Pour test
 
@@ -312,7 +320,7 @@ void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comman
         }
 
         case 3 : {
-            printf("Degustation d'un gateau.\n"); // Affiche le choix proposé
+            printf("3) Degustation d'un gateau.\n"); // Affiche le choix proposé
             if(f_degustations->Gateaux != NULL) {
                 int NbPartRest = degust1Gateau(f_degustations->Gateaux->Gateau);
                 printf("Il reste %d parts a manger du Gateau.\n", NbPartRest);
@@ -322,7 +330,7 @@ void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comman
             break;
         }
         case 4 : {
-            printf("Degustation de tous les gateaux.\n"); // Affiche le choix proposé
+            printf("4) Degustation de tous les gateaux.\n"); // Affiche le choix proposé
             if(f_degustations->Gateaux != NULL){
                 degustation(f_degustations); //+ verif si non vide
                 printf("Tous les gateaux ont ete degustes.\n");
@@ -332,12 +340,12 @@ void Aleat_Choix(int *EcritCmd, Element_str * l_gouts, File_Commandes * f_comman
             break;
         }
         case 5 : {
-            printf("Fin du programme.\n"); // Affiche le choix proposé
+            printf("5) Fin du programme.\n"); // Affiche le choix proposé
             break;
         }
 
         default:{
-            printf("Retour menu");
+            printf("Def : Retour menu");
             break;
         }
     }
